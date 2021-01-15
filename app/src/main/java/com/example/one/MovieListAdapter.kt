@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class SimpleAdapter(val itemClickListener: MovieAdapter.OnItemClickListener) : ListAdapter<Result, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
+class MovieListAdapter(val itemClickListener: MovieAdapter.OnItemClickListener) : ListAdapter<Result, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MovieAdapter.MoviesViewHolder {
         return MovieAdapter.MoviesViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.single_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         )
     }
 
