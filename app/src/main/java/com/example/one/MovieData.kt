@@ -3,10 +3,10 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 data class PopularMovies(
-    val results: List<Result>
+    val results: List<MovieData>
 )
 @Parcelize
-data class Result(
+data class MovieData(
     val id: Int,
     val overview: String,
     val poster_path: String,

@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.one.retrofit.image_url
+import com.example.one.retrofit.movies.image_url
 import kotlinx.android.synthetic.main.movie_item.view.*
-class MovieAdapter(var movies: List<Result>,  val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>()
+class MovieAdapter(var movies: List<MovieData>,  val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -31,7 +31,7 @@ class MovieAdapter(var movies: List<Result>,  val itemClickListener: OnItemClick
         val photo: ImageView = itemView.iv_movie_photo
         val title: TextView = itemView.tv_title
         val rating: TextView = itemView.tv_rating
-        fun bind (movie: Result, clickListener: OnItemClickListener, position: Int)
+        fun bind (movie: MovieData, clickListener: OnItemClickListener, position: Int)
         {
             Glide.with(itemView.context).load(image_url + movie.poster_path).into(photo)
             title.text = movie.title
@@ -44,6 +44,6 @@ class MovieAdapter(var movies: List<Result>,  val itemClickListener: OnItemClick
     }
 
     interface OnItemClickListener{
-        fun onItemClicked(movie: Result)
+        fun onItemClicked(movie: MovieData)
     }
 }

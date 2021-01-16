@@ -1,4 +1,4 @@
-package com.example.one.retrofit
+package com.example.one.retrofit.movies
 
 import okhttp3.OkHttpClient
 

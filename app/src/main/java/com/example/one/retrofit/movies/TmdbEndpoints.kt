@@ -1,4 +1,4 @@
-package com.example.smth.retrofit
+package com.example.one.retrofit.movies
 import com.example.one.PopularMovies
 import retrofit2.Call
 import retrofit2.http.GET

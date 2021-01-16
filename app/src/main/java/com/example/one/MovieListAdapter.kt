@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class MovieListAdapter(val itemClickListener: MovieAdapter.OnItemClickListener) : ListAdapter<Result, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
+class MovieListAdapter(val itemClickListener: MovieListFragment) : ListAdapter<MovieData, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -19,14 +19,15 @@ class MovieListAdapter(val itemClickListener: MovieAdapter.OnItemClickListener) 
     override fun onBindViewHolder(holder: MovieAdapter.MoviesViewHolder, position: Int) {
         holder.bind(currentList[position], itemClickListener, position)
     }
-}
-    class SimpleDiffUtil: DiffUtil.ItemCallback<Result>() {
 
-        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+}
+    class SimpleDiffUtil: DiffUtil.ItemCallback<MovieData>() {
+
+        override fun areItemsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+        override fun areContentsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
             return oldItem == newItem
         }
 }
