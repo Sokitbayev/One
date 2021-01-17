@@ -15,8 +15,8 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/movie_photo"
                 android:scaleType="centerCrop"
