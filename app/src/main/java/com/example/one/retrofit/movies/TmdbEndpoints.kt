@@ -1,5 +1,5 @@
 package com.example.one.retrofit.movies
-import com.example.one.PopularMovies
+import com.example.one.database.PopularMovies
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

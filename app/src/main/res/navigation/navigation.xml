@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.example.one.MovieListFragment"
+        android:name="com.example.one.movielist.MovieListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list">
         <action
@@ -19,10 +19,10 @@
     </fragment>
     <fragment
         android:id="@+id/singleMovieFragment"
-        android:name="com.example.one.SingleMovieFragment"
+        android:name="com.example.one.singlemovie.SingleMovieFragment"
         android:label="SingleMovieFragment" >
         <argument
             android:name="movie"
-            app:argType="com.example.one.MovieData" />
+            app:argType="com.example.one.database.MovieData" />
     </fragment>
 </navigation>
