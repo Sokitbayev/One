@@ -1,4 +1,4 @@
-package com.example.one.database
+package com.example.one.database.movie
 
 import android.content.Context
 import androidx.room.Database

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.one.R
-import com.example.one.database.MovieData
+import com.example.one.database.movie.MovieData
 import com.example.one.retrofit.movies.image_url
 import kotlinx.android.synthetic.main.movie_item.view.*
 class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>()

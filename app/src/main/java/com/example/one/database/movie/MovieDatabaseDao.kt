@@ -1,4 +1,4 @@
-package com.example.one.database
+package com.example.one.database.movie
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

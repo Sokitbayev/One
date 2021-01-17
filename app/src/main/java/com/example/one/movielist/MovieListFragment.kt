@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.one.R
-import com.example.one.database.MovieData
-import com.example.one.database.MovieDatabase
+import com.example.one.database.movie.MovieData
+import com.example.one.database.movie.MovieDatabase
 import com.example.one.databinding.FragmentMovieListBinding
 
 
@@ -62,7 +62,8 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
         })
     }
 
-    override fun onItemClicked(movie: MovieData) = requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
+    override fun onItemClicked(movie: MovieData) =
+            requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
 
 
 

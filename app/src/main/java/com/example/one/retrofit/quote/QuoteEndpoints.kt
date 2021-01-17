@@ -1,5 +1,6 @@
 package com.example.one.retrofit.quote
 
+import com.example.one.database.quote.Quote
 import retrofit2.Response
 import retrofit2.http.GET
 

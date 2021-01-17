@@ -3,7 +3,7 @@ package com.example.one.movielist
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.one.database.MovieDatabaseDao
+import com.example.one.database.movie.MovieDatabaseDao
 
 class MovieListViewModelFactory(
         private val dataSource: MovieDatabaseDao,

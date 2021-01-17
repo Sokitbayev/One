@@ -1,4 +1,4 @@
-package com.example.one.database
+package com.example.one.database.movie
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity

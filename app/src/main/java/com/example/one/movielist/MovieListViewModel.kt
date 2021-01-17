@@ -5,9 +5,9 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.one.database.MovieData
-import com.example.one.database.MovieDatabaseDao
-import com.example.one.database.PopularMovies
+import com.example.one.database.movie.MovieData
+import com.example.one.database.movie.MovieDatabaseDao
+import com.example.one.database.movie.PopularMovies
 import com.example.one.retrofit.movies.TmdbEndpoints
 import com.example.one.retrofit.movies.TmdbServiceBuilder
 import com.example.one.retrofit.movies.api_key
@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MovieListViewModel(
-        val database: MovieDatabaseDao, 
+        val database: MovieDatabaseDao,
         val application: Application): 
         ViewModel() {
     

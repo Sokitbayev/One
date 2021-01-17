@@ -23,6 +23,6 @@
         android:label="SingleMovieFragment" >
         <argument
             android:name="movie"
-            app:argType="com.example.one.database.MovieData" />
+            app:argType="com.example.one.database.movie.MovieData" />
     </fragment>
 </navigation>

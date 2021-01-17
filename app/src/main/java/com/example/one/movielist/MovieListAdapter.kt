@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.one.R
-import com.example.one.database.MovieData
+import com.example.one.database.movie.MovieData
 
 class MovieListAdapter(private val itemClickListener: MovieListFragment) : ListAdapter<MovieData, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
 
