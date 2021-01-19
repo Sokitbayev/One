@@ -62,8 +62,7 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
         })
     }
 
-    override fun onItemClicked(movie: MovieData) =
-            requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
+    override fun onItemClicked(movie: MovieData) = requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
 
 
 
