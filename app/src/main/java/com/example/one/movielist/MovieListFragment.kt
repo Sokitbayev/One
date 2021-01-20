@@ -45,6 +45,7 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
         configureRecyclerView()
         binding.refreshLayout.setOnRefreshListener {
             movieListViewModel.loadMoviesFromTmdb()
+            movieListViewModel.loadQuote()
             binding.refreshLayout.isRefreshing = false
         }
 

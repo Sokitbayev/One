@@ -16,7 +16,6 @@ import com.example.one.retrofit.quote.QuoteServiceBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,19 +56,23 @@ class MovieListViewModel(
 
         })
     }
-    private fun loadQuote()
-    {
+    fun loadQuote() {
         val request = QuoteServiceBuilder.buildService(QuoteEndpoints::class.java)
 
-        CoroutineScope(Dispatchers.IO).launch {
-
-            val response = request.getQuote()
-
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = request.getQuote()
+                if (response.isSuccessful && response.body() != null) {
                     _quoteText.value = response.body()!!.quoteText
                 }
-            }
-        }}
 
-}
+            } catch (e: Exception) {
+                _quoteText.value = "Reload page"
+                Toast.makeText(application.applicationContext,
+                        "Error: ${e.message}",
+                        Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+    }}
