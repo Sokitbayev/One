@@ -13,7 +13,6 @@ import com.example.one.database.movie.MovieData
 import com.example.one.database.movie.MovieDatabase
 import com.example.one.databinding.FragmentMovieListBinding
 
-
 class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
 
     private val adapter = MovieListAdapter(this)
@@ -52,7 +51,6 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
         return binding.root
     }
 
-
     private fun configureRecyclerView() {
         binding.rvMovie.layoutManager = LinearLayoutManager(context)
         binding.rvMovie.adapter = adapter
@@ -65,7 +63,4 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
 
     override fun onItemClicked(movie: MovieData) =
             requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
-
-
-
 }

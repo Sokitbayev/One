@@ -46,10 +46,9 @@ class MovieListViewModel(
             override fun onResponse(call: Call<PopularMovies>, response: Response<PopularMovies>) {
                 if (response.isSuccessful) {
                     _movieList.value = response.body()!!.results
-                    }
                 }
+            }
             override fun onFailure(call: Call<PopularMovies>, t: Throwable) {
-
                 Toast.makeText(application.applicationContext, t.message,Toast.LENGTH_LONG).show()
             }
         })
@@ -64,10 +63,12 @@ class MovieListViewModel(
                 if (response.isSuccessful && response.body() != null) {
                     _quoteText.value = response.body()!!.quoteText
                 }
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
                 Toast.makeText(application.applicationContext,
                         "Error: ${e.message}",
                         Toast.LENGTH_LONG).show()
             }
         }
-    }}
+    }
+}

@@ -11,8 +11,7 @@ import com.example.one.R
 import com.example.one.database.movie.MovieData
 import com.example.one.retrofit.movies.image_url
 import kotlinx.android.synthetic.main.movie_item.view.*
-class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>()
-{
+class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view  = LayoutInflater.from(parent.context).inflate(R.layout.movie_item,parent,false)
@@ -30,9 +29,9 @@ class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: O
     }
 
     class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photo: ImageView = itemView.iv_movie_photo
-        val title: TextView = itemView.movie_title
-        val rating: TextView = itemView.movie_rating
+        private val photo: ImageView = itemView.iv_movie_photo
+        private val title: TextView = itemView.movie_title
+        private val rating: TextView = itemView.movie_rating
         fun bind (movie: MovieData, clickListener: OnItemClickListener, position: Int)
         {
             Glide.with(itemView.context).load(image_url + movie.poster_path).into(photo)

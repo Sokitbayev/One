@@ -21,8 +21,8 @@ class MovieListAdapter(private val itemClickListener: MovieListFragment) : ListA
     override fun onBindViewHolder(holder: MovieAdapter.MoviesViewHolder, position: Int) {
         holder.bind(currentList[position], itemClickListener, position)
     }
-
 }
+
     class SimpleDiffUtil: DiffUtil.ItemCallback<MovieData>() {
 
         override fun areItemsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
@@ -32,4 +32,4 @@ class MovieListAdapter(private val itemClickListener: MovieListFragment) : ListA
         override fun areContentsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
             return oldItem == newItem
         }
-}
+    }
