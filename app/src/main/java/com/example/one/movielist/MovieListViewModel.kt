@@ -29,7 +29,7 @@ class MovieListViewModel(
     val movieList: LiveData<List<MovieData>>
         get() =_movieList
 
-    private var _quoteText : MutableLiveData<String> = MutableLiveData()
+    private var _quoteText : MutableLiveData<String> = MutableLiveData("Reload")
     val quote: LiveData<String>
         get() = _quoteText
 
@@ -48,14 +48,13 @@ class MovieListViewModel(
                     _movieList.value = response.body()!!.results
                     }
                 }
-
             override fun onFailure(call: Call<PopularMovies>, t: Throwable) {
+
                 Toast.makeText(application.applicationContext, t.message,Toast.LENGTH_LONG).show()
             }
-
-
         })
     }
+
     fun loadQuote() {
         val request = QuoteServiceBuilder.buildService(QuoteEndpoints::class.java)
 
@@ -65,14 +64,10 @@ class MovieListViewModel(
                 if (response.isSuccessful && response.body() != null) {
                     _quoteText.value = response.body()!!.quoteText
                 }
-
             } catch (e: Exception) {
-                _quoteText.value = "Reload page"
                 Toast.makeText(application.applicationContext,
                         "Error: ${e.message}",
                         Toast.LENGTH_LONG).show()
             }
         }
-
-
     }}
