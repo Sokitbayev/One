@@ -1,4 +1,5 @@
 package com.example.one.database.movie
+
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -26,4 +27,4 @@ data class MovieData(
     val vote_average: Double,
     @ColumnInfo(name = "vote_count")
     val vote_count: Int
-): Parcelable
+) : Parcelable

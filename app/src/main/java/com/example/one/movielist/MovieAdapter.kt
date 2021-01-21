@@ -11,10 +11,14 @@ import com.example.one.R
 import com.example.one.database.movie.MovieData
 import com.example.one.retrofit.movies.image_url
 import kotlinx.android.synthetic.main.movie_item.view.*
-class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
+
+class MovieAdapter(
+    var movies: List<MovieData>,
+    private val itemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.movie_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         return MoviesViewHolder(view)
     }
 
@@ -24,7 +28,7 @@ class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: O
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 
-        return holder.bind(movies[position],itemClickListener,position)
+        return holder.bind(movies[position], itemClickListener, position)
 
     }
 
@@ -32,8 +36,7 @@ class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: O
         private val photo: ImageView = itemView.iv_movie_photo
         private val title: TextView = itemView.movie_title
         private val rating: TextView = itemView.movie_rating
-        fun bind (movie: MovieData, clickListener: OnItemClickListener, position: Int)
-        {
+        fun bind(movie: MovieData, clickListener: OnItemClickListener, position: Int) {
             Glide.with(itemView.context).load(image_url + movie.poster_path).into(photo)
             title.text = movie.title
             rating.text = movie.vote_average.toString()
@@ -44,7 +47,7 @@ class MovieAdapter(var movies: List<MovieData>, private val itemClickListener: O
         }
     }
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClicked(movie: MovieData)
     }
 }

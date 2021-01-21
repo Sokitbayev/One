@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.one.database.movie.MovieDatabaseDao
 
 class MovieListViewModelFactory(
-        private val dataSource: MovieDatabaseDao,
-        private val application: Application
+    private val dataSource: MovieDatabaseDao,
+    private val application: Application
 ) : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")

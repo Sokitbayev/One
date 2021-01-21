@@ -22,12 +22,12 @@ abstract class QuoteDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            QuoteDatabase::class.java,
-                            "quote_database"
+                        context.applicationContext,
+                        QuoteDatabase::class.java,
+                        "quote_database"
                     )
-                            .fallbackToDestructiveMigration()
-                            .build()
+                        .fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

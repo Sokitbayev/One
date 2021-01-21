@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface MovieDatabaseDao{
+interface MovieDatabaseDao {
     @Insert
     fun insertMovie(movie: MovieData)
 

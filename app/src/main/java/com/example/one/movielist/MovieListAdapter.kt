@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.one.R
 import com.example.one.database.movie.MovieData
 
-class MovieListAdapter(private val itemClickListener: MovieListFragment) : ListAdapter<MovieData, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
+class MovieListAdapter(private val itemClickListener: MovieListFragment) :
+    ListAdapter<MovieData, MovieAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MovieAdapter.MoviesViewHolder {
         return MovieAdapter.MoviesViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         )
     }
 
@@ -23,13 +24,13 @@ class MovieListAdapter(private val itemClickListener: MovieListFragment) : ListA
     }
 }
 
-    class SimpleDiffUtil: DiffUtil.ItemCallback<MovieData>() {
+class SimpleDiffUtil : DiffUtil.ItemCallback<MovieData>() {
 
-        override fun areItemsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
-            return oldItem == newItem
-        }
+    override fun areItemsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
+        return oldItem == newItem
     }
+
+    override fun areContentsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
+        return oldItem == newItem
+    }
+}

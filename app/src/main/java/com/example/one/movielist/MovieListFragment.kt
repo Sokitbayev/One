@@ -1,4 +1,5 @@
 package com.example.one.movielist
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import com.example.one.database.movie.MovieData
 import com.example.one.database.movie.MovieDatabase
 import com.example.one.databinding.FragmentMovieListBinding
 
-class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
+class MovieListFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
     private val adapter = MovieListAdapter(this)
 
@@ -29,7 +30,7 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list, container, false)
         binding.lifecycleOwner = this
 
         val application = requireNotNull(this.activity).application
@@ -38,12 +39,13 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
 
         val viewModelFactory = MovieListViewModelFactory(dataSource, application)
 
-        val movieListViewModel =ViewModelProvider(this,viewModelFactory).get(MovieListViewModel::class.java)
+        val movieListViewModel =
+            ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
         binding.movieListViewModel = movieListViewModel
 
         configureRecyclerView()
         binding.refreshLayout.setOnRefreshListener {
-            movieListViewModel.loadMoviesFromTmdb()
+            movieListViewModel.loadMovies()
             movieListViewModel.loadQuote()
             binding.refreshLayout.isRefreshing = false
         }
@@ -54,13 +56,14 @@ class MovieListFragment: Fragment() , MovieAdapter.OnItemClickListener {
     private fun configureRecyclerView() {
         binding.rvMovie.layoutManager = LinearLayoutManager(context)
         binding.rvMovie.adapter = adapter
-        movieListViewModel.movieList.observe(viewLifecycleOwner,{
-            it?.let{
+        movieListViewModel.movieList.observe(viewLifecycleOwner, {
+            it?.let {
                 adapter.submitList(it)
             }
         })
     }
 
     override fun onItemClicked(movie: MovieData) =
-            requireView().findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
+        requireView().findNavController()
+            .navigate(MovieListFragmentDirections.actionMovieListFragmentToSingleMovieFragment(movie))
 }
