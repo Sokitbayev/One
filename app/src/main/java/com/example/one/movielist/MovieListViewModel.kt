@@ -1,12 +1,12 @@
 package com.example.one.movielist
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.one.database.movie.MovieData
 import com.example.one.database.movie.MovieDatabaseDao
+import com.example.one.extensions.toast
 import com.example.one.retrofit.movies.TmdbEndpoints
 import com.example.one.retrofit.movies.TmdbServiceBuilder
 import com.example.one.retrofit.movies.api_key
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class MovieListViewModel(
     val database: MovieDatabaseDao,
-    val application: Application
+    private val application: Application
 ) :
     ViewModel() {
 
@@ -44,11 +44,7 @@ class MovieListViewModel(
                     _movieList.value = response.body()!!.results
                 }
             } catch (e: Exception) {
-                Toast.makeText(
-                    application.applicationContext,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                e.message?.toast(application.applicationContext)
             }
         }
     }
@@ -62,11 +58,7 @@ class MovieListViewModel(
                     _quoteText.value = response.body()!!.quoteText
                 }
             } catch (e: Exception) {
-                Toast.makeText(
-                    application.applicationContext,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                e.message?.toast(application.applicationContext)
             }
         }
     }
