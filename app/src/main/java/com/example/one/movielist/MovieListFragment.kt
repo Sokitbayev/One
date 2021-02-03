@@ -13,8 +13,9 @@ import com.example.one.R
 import com.example.one.database.movie.MovieData
 import com.example.one.database.movie.MovieDatabase
 import com.example.one.databinding.FragmentMovieListBinding
+import com.example.one.extensions.toast
 
-class MovieListFragment : Fragment(), MovieAdapter.OnItemClickListener {
+class MovieListFragment : Fragment(), OnItemClickListener {
 
     private val adapter = MovieListAdapter(this)
 
@@ -37,7 +38,7 @@ class MovieListFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
         val dataSource = MovieDatabase.getInstance(application).movieDatabaseDao
 
-        val viewModelFactory = MovieListViewModelFactory(dataSource, application)
+        val viewModelFactory = MovieListViewModelFactory(dataSource)
 
         val movieListViewModel =
             ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
@@ -50,6 +51,10 @@ class MovieListFragment : Fragment(), MovieAdapter.OnItemClickListener {
             binding.refreshLayout.isRefreshing = false
         }
 
+        movieListViewModel.errorMessage.observe(viewLifecycleOwner,{
+            showErrorMessage(it)
+        })
+
         return binding.root
     }
 
@@ -61,6 +66,10 @@ class MovieListFragment : Fragment(), MovieAdapter.OnItemClickListener {
                 adapter.submitList(it)
             }
         })
+    }
+
+    private fun showErrorMessage(e: Exception){
+        e.message?.toast(requireContext())
     }
 
     override fun onItemClicked(movie: MovieData) =

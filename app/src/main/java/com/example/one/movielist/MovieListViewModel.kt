@@ -1,12 +1,10 @@
 package com.example.one.movielist
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.one.database.movie.MovieData
 import com.example.one.database.movie.MovieDatabaseDao
-import com.example.one.extensions.toast
 import com.example.one.retrofit.movies.TmdbEndpoints
 import com.example.one.retrofit.movies.TmdbServiceBuilder
 import com.example.one.retrofit.movies.api_key
@@ -17,8 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MovieListViewModel(
-    val database: MovieDatabaseDao,
-    private val application: Application
+    val database: MovieDatabaseDao
 ) :
     ViewModel() {
 
@@ -29,6 +26,10 @@ class MovieListViewModel(
     private var _quoteText: MutableLiveData<String> = MutableLiveData("Reload")
     val quote: LiveData<String>
         get() = _quoteText
+
+    private var _errorMessage: MutableLiveData<Exception> = MutableLiveData()
+    val errorMessage: LiveData<Exception>
+        get() = _errorMessage
 
     init {
         loadMovies()
@@ -44,7 +45,7 @@ class MovieListViewModel(
                     _movieList.value = response.body()!!.results
                 }
             } catch (e: Exception) {
-                e.message?.toast(application.applicationContext)
+                _errorMessage.value = e
             }
         }
     }
@@ -58,7 +59,7 @@ class MovieListViewModel(
                     _quoteText.value = response.body()!!.quoteText
                 }
             } catch (e: Exception) {
-                e.message?.toast(application.applicationContext)
+                _errorMessage.value = e
             }
         }
     }
