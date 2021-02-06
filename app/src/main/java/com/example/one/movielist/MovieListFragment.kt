@@ -18,7 +18,7 @@ import com.example.one.extensions.toast
 
 class MovieListFragment : Fragment(), OnItemClickListener {
 
-    private val adapter = MovieListAdapter(this)
+    private val movieListAdapter = MovieListAdapter(this)
 
     private lateinit var binding: FragmentMovieListBinding
 
@@ -60,10 +60,10 @@ class MovieListFragment : Fragment(), OnItemClickListener {
 
     private fun configureRecyclerView() {
         binding.rvMovie.layoutManager = LinearLayoutManager(context)
-        binding.rvMovie.adapter = adapter
+        binding.rvMovie.adapter = movieListAdapter
         movieListViewModel.movieList.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.submitList(it)
+                movieListAdapter.submitList(it)
             }
         }
     }

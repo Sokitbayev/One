@@ -15,7 +15,7 @@ import com.example.one.retrofit.movies.image_url
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieListAdapter(private val itemClickListener: MovieListFragment) :
-    ListAdapter<MovieData, MovieListAdapter.MoviesViewHolder>(SimpleDiffUtil()) {
+    ListAdapter<MovieData, MovieListAdapter.MoviesViewHolder>(MovieDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,14 +27,14 @@ class MovieListAdapter(private val itemClickListener: MovieListFragment) :
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        holder.bind(currentList[position], itemClickListener, position)
+        holder.bind(currentList[position], itemClickListener)
     }
 
     inner class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val photo: ImageView = itemView.iv_movie_photo
         private val title: TextView = itemView.movie_title
         private val rating: TextView = itemView.movie_rating
-        fun bind(movie: MovieData, clickListener: MovieListFragment, position: Int) {
+        fun bind(movie: MovieData, clickListener: MovieListFragment) {
             Glide.with(itemView.context).load(image_url + movie.poster_path).into(photo)
             title.text = movie.title
             rating.text = movie.vote_average.toString()
@@ -46,7 +46,7 @@ class MovieListAdapter(private val itemClickListener: MovieListFragment) :
     }
 }
 
-class SimpleDiffUtil : DiffUtil.ItemCallback<MovieData>() {
+class MovieDiffUtil : DiffUtil.ItemCallback<MovieData>() {
 
     override fun areItemsTheSame(oldItem: MovieData, newItem: MovieData): Boolean {
         return oldItem == newItem
