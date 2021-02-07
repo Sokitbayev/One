@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.one.R
 import com.example.one.database.movie.MovieData
-import com.example.one.database.movie.MovieDatabase
 import com.example.one.databinding.FragmentMovieListBinding
 import com.example.one.extensions.toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieListFragment : Fragment(), OnItemClickListener {
 
@@ -22,9 +20,7 @@ class MovieListFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentMovieListBinding
 
-    private val movieListViewModel: MovieListViewModel by lazy {
-        ViewModelProvider(this).get(MovieListViewModel::class.java)
-    }
+    private val movieListViewModel by viewModel<MovieListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +31,6 @@ class MovieListFragment : Fragment(), OnItemClickListener {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list, container, false)
         binding.lifecycleOwner = this
 
-        val application = requireNotNull(this.activity).application
-
-        val dataSource = MovieDatabase.getInstance(application).movieDatabaseDao
-
-        val movieListViewModel: MovieListViewModel by viewModels {
-            MovieListViewModelFactory(dataSource)
-        }
         binding.movieListViewModel = movieListViewModel
 
         configureRecyclerView()

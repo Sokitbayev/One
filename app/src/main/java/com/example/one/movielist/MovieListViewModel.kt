@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.one.database.movie.MovieData
-import com.example.one.database.movie.MovieDatabaseDao
 import com.example.one.retrofit.movies.TmdbEndpoints
 import com.example.one.retrofit.movies.TmdbServiceBuilder
 import com.example.one.retrofit.movies.api_key
@@ -14,9 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MovieListViewModel(
-    val database: MovieDatabaseDao
-) :
+class MovieListViewModel:
     ViewModel() {
 
     private var _movieList: MutableLiveData<List<MovieData>> = MutableLiveData()
