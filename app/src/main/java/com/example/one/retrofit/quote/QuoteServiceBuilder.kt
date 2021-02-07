@@ -6,11 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 object QuoteServiceBuilder {
 
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.forismatic.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        .baseUrl("https://api.forismatic.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    fun<T> buildService(service: Class<T>): T{
+    fun <T> buildService(service: Class<T>): T {
         return retrofit.create(service)
     }
 }

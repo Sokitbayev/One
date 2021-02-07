@@ -40,7 +40,7 @@ class MovieListFragment : Fragment(), OnItemClickListener {
             binding.refreshLayout.isRefreshing = false
         }
 
-        movieListViewModel.errorMessage.observe(viewLifecycleOwner){
+        movieListViewModel.errorMessage.observe(viewLifecycleOwner) {
             showErrorMessage(it)
         }
 
@@ -57,7 +57,7 @@ class MovieListFragment : Fragment(), OnItemClickListener {
         }
     }
 
-    private fun showErrorMessage(e: Exception){
+    private fun showErrorMessage(e: Exception) {
         e.message?.toast(requireContext())
     }
 

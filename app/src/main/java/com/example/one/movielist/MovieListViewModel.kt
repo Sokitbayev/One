@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MovieListViewModel:
+class MovieListViewModel :
     ViewModel() {
 
     private var _movieList: MutableLiveData<List<MovieData>> = MutableLiveData()
