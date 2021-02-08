@@ -35,28 +35,28 @@ class MovieListViewModel :
 
     fun loadMovies() {
         val request = TmdbServiceBuilder.buildService(TmdbEndpoints::class.java)
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = request.getMovies(api_key)
                 if (response.isSuccessful) {
-                    _movieList.value = response.body()!!.results
+                    _movieList.postValue(response.body()!!.results)
                 }
             } catch (e: Exception) {
-                _errorMessage.value = e
+                _errorMessage.postValue(e)
             }
         }
     }
 
     fun loadQuote() {
         val request = QuoteServiceBuilder.buildService(QuoteEndpoints::class.java)
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = request.getQuote()
                 if (response.isSuccessful) {
-                    _quoteText.value = response.body()!!.quoteText
+                    _quoteText.postValue(response.body()!!.quoteText)
                 }
             } catch (e: Exception) {
-                _errorMessage.value = e
+                _errorMessage.postValue(e)
             }
         }
     }
