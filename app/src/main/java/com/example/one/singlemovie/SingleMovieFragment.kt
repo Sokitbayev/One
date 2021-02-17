@@ -17,20 +17,16 @@ class SingleMovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
         return inflater.inflate(fragment_single_movie, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie by lazy {
-            SingleMovieFragmentArgs.fromBundle(requireArguments()).movie
-        }
+        val movie = SingleMovieFragmentArgs.fromBundle(requireArguments()).movie
         movie_title.text = movie.title
         movie_rating.text = movie.vote_average.toString()
         movie_overview.text = movie.overview
-
-        Glide.with(view.context).load(image_url + movie.poster_path).into(view.findViewById(R.id.movie_photo))
+        Glide.with(view.context).load(image_url + movie.poster_path)
+            .into(view.findViewById(R.id.movie_photo))
     }
 }
